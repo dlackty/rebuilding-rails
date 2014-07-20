@@ -3,6 +3,12 @@ require_relative "test_helper"
 class TestApp < Rulers::Application
 end
 
+class TestController < Rulers::Controller
+  def test
+    "Hello test!"
+  end
+end
+
 class RulerAppTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
@@ -11,7 +17,7 @@ class RulerAppTest < Test::Unit::TestCase
   end
 
   def test_request
-    get "/"
+    get "/test/test"
 
     assert last_response.ok?
     body = last_response.body
