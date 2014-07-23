@@ -1,7 +1,7 @@
 class QuotesController < Rulers::Controller
   def index
-    quotes = FileModel.all
-    render :index, quotes: quotes
+    @quotes = FileModel.all
+    render :index
   end
 
   def new
@@ -10,8 +10,8 @@ class QuotesController < Rulers::Controller
       "quote" => "A picture is worth one k pixels",
       "attribution" => "Me"
     }
-    m = FileModel.create attrs
-    render :quote, obj: m
+    @obj = FileModel.create attrs
+    render :quote
   end
 
   def a_quote
@@ -19,9 +19,9 @@ class QuotesController < Rulers::Controller
   end
 
   def show
-    quote = FileModel.find(params["id"])
-    ua = request.user_agent
-    render :quote, obj: quote, ua: ua
+    @quote = FileModel.find(params["id"])
+    @ua = request.user_agent
+    render :quote
   end
 
   def exception
