@@ -1,4 +1,9 @@
 class QuotesController < Rulers::Controller
+  def index
+    quotes = FileModel.all
+    render :index, quotes: quotes
+  end
+
   def a_quote
     render :a_quote, noun: :winking
   end

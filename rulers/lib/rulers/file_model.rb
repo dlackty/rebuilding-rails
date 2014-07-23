@@ -25,6 +25,11 @@ module Rulers
       rescue Exception => e
         puts e.inspect
       end
+
+      def self.all
+        files = Dir["db/quotes/*.json"]
+        files.map { |f| FileModel.new f }
+      end
     end
   end
 end
