@@ -5,7 +5,7 @@ end
 
 class TestController < Rulers::Controller
   def test
-    "Hello test!"
+    render text: "Hello test!"
   end
 end
 

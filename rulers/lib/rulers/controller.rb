@@ -31,7 +31,11 @@ module Rulers
     end
 
     def render(*args)
-      response(render_template(*args))
+      if args.first[:text]
+        response(args.first[:text])
+      else
+        response(render_template(*args))
+      end
     end
 
     def render_template(view_name, locals = {})
