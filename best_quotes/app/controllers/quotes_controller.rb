@@ -19,8 +19,9 @@ class QuotesController < Rulers::Controller
   end
 
   def show
-    quote_1 = FileModel.find(params["id"])
-    render :quote, obj: quote_1
+    quote = FileModel.find(params["id"])
+    ua = request.user_agent
+    render :quote, obj: quote, ua: ua
   end
 
   def exception
