@@ -97,6 +97,19 @@ SQL
       def []=(name, value)
         @hash[name.to_s] = value
       end
+
+      def method_missing(sym, *args, &block)
+        case sym.to_s
+        when /(.+?)=\z/
+          if @hash[$1]
+            @hash[$1.to_s] = args.first
+          else
+            super(sym, *args, &block)
+          end
+        else
+          @hash[sym.to_s] || super(sym, *args, &block)
+        end
+      end
     end
   end
 end
